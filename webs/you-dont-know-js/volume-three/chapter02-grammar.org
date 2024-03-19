@@ -1,0 +1,28 @@
+#+TITLE: 第2章 语法
+#+AUTHOR: mcge
+#+DATE: <2024-03-14 13:11:53>
+
+ES6 新增了许多新式的语法，本章将会介绍这些新式的语法。
+** 2.1 块作用域
+    之前 Javascript 中变量的作用域基本单元是=function=。若要创建一个=块作用域=，最常用
+的方式除了函数声明，就是=立即调用函数表达式(IIFE)=。
+#+BEGIN_SRC JavaScript
+  var a = 2;
+  (function IIFE() {
+    var a = 3;
+    console.log(a);
+  })();
+#+END_SRC
+*** 2.1.1 let 声明
+ES6 开始可以创建绑定到任意块的声明-=块作用域= 使用={let variableName = value;}=
+应该把=let=声明放在块的最前面。
+=let=声明属于块作用域，但直到在块中出现才会被初始化。
+*在 let 声明/初始化前访问会导致错误* TDZ 暂时性死区
+#+BEGIN_SRC JavaScript
+  var a = 2;
+  {
+    let a = 3;
+    console.log(a); // 3
+  }
+  console.log(a); // 2
+#+END_SRC
